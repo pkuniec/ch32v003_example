@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+	  "tasks": [
+		{
+		  "label": "run_openocd",
+		  "type": "process",
+		  "isBackground": true,
+		  "command": "/home/pawel/CH32V/toolchain/openocd-riscv/openocd",
+		  "args": ["-f", "${workspaceRoot}/.vscode/wch-riscv.cfg"],
+		  "problemMatcher": [
+			{
+			  "pattern": [
+			  {
+				"regexp": ".",
+				"file": 1,
+				"location": 2,
+				"message": 3
+			  }
+			  ],
+			  "background": {
+			  "activeOnStart": true,
+			  "beginsPattern": ".",
+			  "endsPattern": "."
+			  }
+			}
+			]
+		}
+	  ]
+}
