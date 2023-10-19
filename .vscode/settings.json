@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "debug.h": "c"
+        "ch32v00x_misc.h": "c",
+        "ch32v00x_it.h": "c"
     }
+
 }

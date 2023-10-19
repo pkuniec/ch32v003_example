@@ -1,7 +1,7 @@
 #include "debug.h"
 #include "system_ch32v00x.h"
-#include "../../vendor/Peripheral/inc/ch32v00x_gpio.h"
-#include "../../vendor/Peripheral/inc/ch32v00x_misc.h"
+#include "ch32v00x_gpio.h"
+#include "ch32v00x_misc.h"
 #include "ch32v00x_it.h"
 
 void GPIO_Toggle_INIT(void)

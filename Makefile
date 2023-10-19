@@ -54,7 +54,7 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 .PHONY: clean
 
 clean:
-	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(BUILD_DIR)/*
 
 size:
 	$(SIZE) $(BUILD_DIR)/$(TARGET_ELF)

@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "LINUX",
+            "includePath": [
+                "${workspaceFolder}/user/Inc",
+                "${workspaceFolder}/vendor/Peripheral/inc",
+                "${workspaceFolder}/vendor/Core",
+                "${workspaceFolder}/vendor/Debug"
+            ],
+            "defines": [],
+            "compilerPath": "/home/pawel/CH32V/toolchain/8.2.0/bin/riscv-none-embed-gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-arm",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
