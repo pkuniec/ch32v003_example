@@ -15,7 +15,7 @@
 #include "debug.h"
 
 void SysTick_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-uint32_t get_systick(void);
+uint32_t *GetTimeHandler(void);
 
 #endif /* __CH32V00x_IT_H */
 

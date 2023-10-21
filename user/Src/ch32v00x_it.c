@@ -10,6 +10,7 @@
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
 #include <ch32v00x_it.h>
+#include "common.h"
 
 void NMI_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
@@ -39,15 +40,36 @@ void HardFault_Handler(void)
   }
 }
 
-static volatile uint32_t systick_counter = 0;
+static uint8_t usec = 100;
+static uint8_t msec = 100;
+static uint32_t irq_flags;
 
-uint32_t get_systick(void)
-{
-  return systick_counter;
+uint32_t *GetTimeHandler(void) {
+    return &irq_flags;
 }
 
 void SysTick_Handler(void)
 {
-  systick_counter++;
   SysTick->SR = 0;
+
+  // 100 us
+  irq_flags |= OS_FLAGS_TIMER_100US;
+
+  // Timer 10ms
+  if (!usec--) {
+    usec = 100;
+    msec--;
+    irq_flags |= OS_FLAGS_TIMER_10MS;
+  }
+
+  // Timer 1s
+  if (!msec) {
+    msec = 100;
+    irq_flags |= OS_FLAGS_TIMER_1S;
+  }
 }
+
+
+
+
+

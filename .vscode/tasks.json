@@ -33,11 +33,11 @@
 			"args": ["-j4"]
 		},
 		{
-			"label": "upload",
+			"label": "flash",
 			"type": "shell",
 			"group": "build",
 			"command": "make",
-			"args": ["upload"]
+			"args": ["flash"]
 		}
 	  ]
 }

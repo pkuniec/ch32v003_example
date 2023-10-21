@@ -26,7 +26,7 @@ FLAGS = -march=rv32ec -mabi=ilp32e -msmall-data-limit=8 -mno-save-restore -fmess
 ASFLAGS = -march=rv32ec $(FLAGS) -x assembler $(INC_FLAGS) -MMD -MP
 CFLAGS = -march=rv32ec $(FLAGS) -std=gnu99
 CPPFLAGS = $(FLAGS) $(INC_FLAGS) -std=gnu99 -MMD -MP
-LDFLAGS = -march=rv32ec $(FLAGS) -T ./vendor/Ld/Link.ld -nostartfiles -Xlinker --gc-sections -Wl,-Map,"$(BUILD_DIR)/$(TARGET_NAME).map" --specs=nano.specs --specs=nosys.specs
+LDFLAGS = $(FLAGS) -T ./vendor/Ld/Link.ld -nostartfiles -Xlinker --gc-sections -Wl,-Map,"$(BUILD_DIR)/$(TARGET_NAME).map" --specs=nano.specs --specs=nosys.specs
 
 
 $(BUILD_DIR)/$(TARGET_ELF): $(OBJS)
@@ -60,15 +60,13 @@ size:
 	$(SIZE) $(BUILD_DIR)/$(TARGET_ELF)
 
 flash:
-	$(OPENOCD)openocd -f $(OPENOCD)wch-riscv.cfg -c init -c halt -c "program $(BUILD_DIR)/$(TARGET_ELF)" -c exit
+	$(OPENOCD)openocd -f $(OPENOCD)wch-riscv.cfg -c init -c halt -c "program $(BUILD_DIR)/$(TARGET_ELF)" -c wlink_reset_resume -c exit
 
 reset:
 	$(OPENOCD)openocd -f $(OPENOCD)wch-riscv.cfg -c init -c halt -c wlink_reset_resume -c exit
 
 erase:
 	$(OPENOCD)openocd -f $(OPENOCD)wch-riscv.cfg -c init -c halt -c "flash erase_sector wch_riscv 0 last" -c exit
-
-upload: flash reset
 
 -include $(DEPS)
 
